@@ -2,20 +2,20 @@
 updated version of CATSBot.net's bot
 
 ## Table of contents
-1. [Introduction](#Introduction)
-2. [Settings](#Settings)
-    1. [Quick fighting](#Quick-fighting)
-        1. [Quick Fight](#Quick-Fight)
-        2. [Skip above health](#Skip-above-health)
-        3. [Stop at coins](#Stop-at-coins)
-    2. [Fight Championship](#Fight-Championship)
-    3. [Box opening](#Box-opening)
-        1. [Open Boxes](#Open-Boxes)
-        2. [Skip 30m](#Skip-30m)
-    4. [Hibernation](#Hibernation)
-        1. [Stage Max](#Stage-Max)
-        2. [Hibernate in](#Hibernate-in)
-    5. [Latency settings](#Latency-settings)
+1. [Introduction](#introduction)
+2. [Settings](#settings)
+    1. [Quick fighting](#quick-fighting)
+        1. [Quick Fight](#quick-fight)
+        2. [Skip above health](#skip-above-health)
+        3. [Stop at coins](#stop-at-coins)
+    2. [Fight Championship](#fight-championship)
+    3. [Box opening](#box-opening)
+        1. [Open Boxes](#open-boxes)
+        2. [Skip 30m](#skip-30m)
+    4. [Hibernation](#hibernation)
+        1. [Stage Max](#stage-max)
+        2. [Hibernate in](#hibernate-in)
+    5. [Latency settings](#latency-settings)
 	
 ## Introduction
 ## Settings
