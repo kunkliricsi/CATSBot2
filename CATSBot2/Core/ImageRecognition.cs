@@ -56,7 +56,6 @@ namespace CATSBot2.Core
             for (int i = 0; i < tries; i++)
             {
                 Bitmap screen = ADB.TakeScreenshot(button);
-                screen.Save("debug2.png");
 
                 ExhaustiveTemplateMatching templateMatching = new ExhaustiveTemplateMatching(0.941f);
                 TemplateMatch[] matches = templateMatching.ProcessImage(screen, button.image);
