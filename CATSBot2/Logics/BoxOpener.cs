@@ -50,8 +50,9 @@ namespace CATSBot2.Logics
 
         private static Messages WatchVideos()
         {
-            if (!(SettingsManager.settings.boxSkip && (!SettingsManager.settings.quickFight || (QuickFight.reachedMax && !SettingsManager.settings.stageMax))))
-                return Messages.NotInFuncion;
+            if (!(SettingsManager.settings.crownMaxEnabled && SettingsManager.settings.crownMaxEnabled))
+                if (!(SettingsManager.settings.boxSkip && (!SettingsManager.settings.quickFight || (QuickFight.reachedMax && !SettingsManager.settings.stageMax))))
+                    return Messages.NotInFuncion;
 
             if (!Game.RepeatFindButton(Resources.QuickFight, SettingsManager.settings.GetLatency()))
                 return Messages.Restart;
@@ -183,7 +184,7 @@ namespace CATSBot2.Logics
             }
             #endregion
 
-            if (SettingsManager.settings.boxTime.CompareTo(DateTime.Now) > 0 && (!SettingsManager.settings.boxSkip || (SettingsManager.settings.quickFight && !QuickFight.reachedMax)))
+            if (SettingsManager.settings.boxTime.CompareTo(DateTime.Now) > 0 && (!SettingsManager.settings.boxSkip || (SettingsManager.settings.quickFight && !QuickFight.reachedMax)) && !(SettingsManager.settings.crownMax && SettingsManager.settings.crownMaxEnabled))
                 return Messages.NotInFuncion;
 
             if (boxes <= 0)
@@ -196,8 +197,26 @@ namespace CATSBot2.Logics
                 while (boxes <= 0)
                 {
                     Logger.Log("No available boxes");
-                    if (QuickFight.Run(false, false, 5) == Messages.Restart)
-                        return Messages.Restart;
+                    if (SettingsManager.settings.crownMax && SettingsManager.settings.crownMaxEnabled && !QuickFight.underCoins)
+                    {
+                        int crowns;
+                        do
+                        {
+                            if (QuickFight.Run(false, forCrownMax: true) == Messages.Restart)
+                                return Messages.Restart;
+
+                            if (QuickFight.underCoins)
+                                break;
+
+                            crowns = Game.FindAllButtons(Resources.Crown);
+                            Logger.Log(12 - crowns + " crowns left until box opening");
+                        } while (crowns != 12);
+                    }
+                    else
+                    {
+                        if (QuickFight.Run(false, false, loops: 5) == Messages.Restart)
+                            return Messages.Restart;
+                    }
 
                     if (!Game.FindButton(Resources.QuickFight, 3))
                         return Messages.Restart;

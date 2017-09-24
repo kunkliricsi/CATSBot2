@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.metroTabControl = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPageSettings = new MetroFramework.Controls.MetroTabPage();
+            this.checkCrownMax = new MetroFramework.Controls.MetroCheckBox();
             this.comboLatency = new MetroFramework.Controls.MetroComboBox();
             this.labelLatency = new MetroFramework.Controls.MetroLabel();
             this.checkQuickFight = new MetroFramework.Controls.MetroCheckBox();
@@ -105,6 +106,7 @@
             // 
             // metroTabPageSettings
             // 
+            this.metroTabPageSettings.Controls.Add(this.checkCrownMax);
             this.metroTabPageSettings.Controls.Add(this.comboLatency);
             this.metroTabPageSettings.Controls.Add(this.labelLatency);
             this.metroTabPageSettings.Controls.Add(this.checkQuickFight);
@@ -132,6 +134,19 @@
             this.metroTabPageSettings.VerticalScrollbarBarColor = true;
             this.metroTabPageSettings.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPageSettings.VerticalScrollbarSize = 10;
+            // 
+            // checkCrownMax
+            // 
+            this.checkCrownMax.Enabled = false;
+            this.checkCrownMax.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
+            this.checkCrownMax.Location = new System.Drawing.Point(190, 155);
+            this.checkCrownMax.Name = "checkCrownMax";
+            this.checkCrownMax.Size = new System.Drawing.Size(96, 24);
+            this.checkCrownMax.TabIndex = 22;
+            this.checkCrownMax.Text = "Crown Max";
+            this.checkCrownMax.UseSelectable = true;
+            this.checkCrownMax.CheckedChanged += new System.EventHandler(this.checkCrownMax_CheckedChanged);
+            this.checkCrownMax.EnabledChanged += new System.EventHandler(this.checkCrownMax_EnabledChanged);
             // 
             // comboLatency
             // 
@@ -241,11 +256,11 @@
             // checkStageMax
             // 
             this.checkStageMax.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.checkStageMax.Location = new System.Drawing.Point(3, 183);
+            this.checkStageMax.Location = new System.Drawing.Point(3, 182);
             this.checkStageMax.Name = "checkStageMax";
-            this.checkStageMax.Size = new System.Drawing.Size(94, 24);
+            this.checkStageMax.Size = new System.Drawing.Size(131, 24);
             this.checkStageMax.TabIndex = 15;
-            this.checkStageMax.Text = "Stage Max";
+            this.checkStageMax.Text = "Exit at Stage Max";
             this.checkStageMax.UseSelectable = true;
             this.checkStageMax.CheckedChanged += new System.EventHandler(this.check_CheckedChanged);
             // 
@@ -254,7 +269,7 @@
             this.checkBoxSkip.AutoSize = true;
             this.checkBoxSkip.Enabled = false;
             this.checkBoxSkip.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.checkBoxSkip.Location = new System.Drawing.Point(107, 158);
+            this.checkBoxSkip.Location = new System.Drawing.Point(105, 158);
             this.checkBoxSkip.Name = "checkBoxSkip";
             this.checkBoxSkip.Size = new System.Drawing.Size(82, 19);
             this.checkBoxSkip.TabIndex = 14;
@@ -268,7 +283,7 @@
             // 
             // 
             this.textHiber.CustomButton.Image = null;
-            this.textHiber.CustomButton.Location = new System.Drawing.Point(53, 1);
+            this.textHiber.CustomButton.Location = new System.Drawing.Point(30, 1);
             this.textHiber.CustomButton.Name = "";
             this.textHiber.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.textHiber.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -278,7 +293,7 @@
             this.textHiber.CustomButton.Visible = false;
             this.textHiber.Enabled = false;
             this.textHiber.Lines = new string[0];
-            this.textHiber.Location = new System.Drawing.Point(203, 184);
+            this.textHiber.Location = new System.Drawing.Point(226, 184);
             this.textHiber.MaxLength = 32767;
             this.textHiber.Name = "textHiber";
             this.textHiber.PasswordChar = '\0';
@@ -288,7 +303,7 @@
             this.textHiber.SelectionLength = 0;
             this.textHiber.SelectionStart = 0;
             this.textHiber.ShortcutsEnabled = true;
-            this.textHiber.Size = new System.Drawing.Size(75, 23);
+            this.textHiber.Size = new System.Drawing.Size(52, 23);
             this.textHiber.TabIndex = 13;
             this.textHiber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textHiber.UseSelectable = true;
@@ -302,11 +317,11 @@
             this.checkHiber.AutoSize = true;
             this.checkHiber.Enabled = false;
             this.checkHiber.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.checkHiber.Location = new System.Drawing.Point(97, 186);
+            this.checkHiber.Location = new System.Drawing.Point(135, 186);
             this.checkHiber.Name = "checkHiber";
-            this.checkHiber.Size = new System.Drawing.Size(100, 19);
+            this.checkHiber.Size = new System.Drawing.Size(85, 19);
             this.checkHiber.TabIndex = 12;
-            this.checkHiber.Text = "Hibernate in";
+            this.checkHiber.Text = "Hibernate";
             this.checkHiber.UseSelectable = true;
             this.checkHiber.CheckedChanged += new System.EventHandler(this.checkHiber_CheckedChanged);
             // 
@@ -799,6 +814,7 @@
         private MetroFramework.Controls.MetroLabel labelAboutDate;
         private MetroFramework.Controls.MetroComboBox comboLatency;
         private MetroFramework.Controls.MetroLabel labelLatency;
+        private MetroFramework.Controls.MetroCheckBox checkCrownMax;
     }
 }
 

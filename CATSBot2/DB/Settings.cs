@@ -40,6 +40,8 @@ namespace CATSBot2.DB
         public bool champ;
         public bool box;
         public bool boxSkip;
+        public bool crownMax;
+        public bool crownMaxEnabled;
         public bool stageMax;
         public bool hiber;
 
@@ -61,6 +63,8 @@ namespace CATSBot2.DB
             champ = false;
             box = false;
             boxSkip = false;
+            crownMax = false;
+            crownMaxEnabled = false;
             stageMax = false;
             hiber = false;
         }

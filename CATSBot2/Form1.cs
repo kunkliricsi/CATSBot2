@@ -167,6 +167,7 @@ namespace CATSBot2
             textCoinStop.Text = SettingsManager.settings.coins.ToString();
             checkBoxSkip.Checked = SettingsManager.settings.boxSkip;
             checkBox.Checked = SettingsManager.settings.box;
+            checkCrownMax.Checked = SettingsManager.settings.crownMax;
             checkStageMax.Checked = SettingsManager.settings.stageMax;
             checkHiber.Checked = SettingsManager.settings.hiber;
             checkChamp.Checked = SettingsManager.settings.champ;
@@ -209,6 +210,8 @@ namespace CATSBot2
                     checkCoinStop.Enabled = true;
                     if (checkCoinStop.Checked)
                         textCoinStop.Enabled = true;
+                    if (checkBoxSkip.Checked && checkBoxSkip.Enabled && checkCoinStop.Checked)
+                        checkCrownMax.Enabled = true;
                 }
             }
             else
@@ -216,6 +219,7 @@ namespace CATSBot2
                 textSkip.Enabled = false;
                 checkCoinStop.Enabled = false;
                 textCoinStop.Enabled = false;
+                checkCrownMax.Enabled = false;
             }
         }
 
@@ -267,6 +271,10 @@ namespace CATSBot2
         private void checkBoxSkip_CheckedChanged(object sender, EventArgs e)
         {
             SettingsManager.settings.boxSkip = checkBoxSkip.Checked;
+            if (checkBoxSkip.Checked && checkSkip.Enabled && checkSkip.Checked && checkCoinStop.Checked)
+                checkCrownMax.Enabled = true;
+            else
+                checkCrownMax.Enabled = false;
         }
 
         private void mainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -286,6 +294,9 @@ namespace CATSBot2
         {
             if (toogleStartStop.Checked && toogleState == CheckState.Unchecked)
             {
+                SettingsManager.allStatistics += SettingsManager.currentStatistics;
+                SettingsManager.currentStatistics = new Statistics();
+                UpdateStats();
                 AppendLog(Environment.NewLine + "STARTING---------------------------------------------------------------------");
                 thread = new Thread(BotMainLoop);
                 thread.IsBackground = true;
@@ -384,9 +395,14 @@ namespace CATSBot2
             {
                 if (checkSkip.Checked && checkQuickFight.Checked)
                     textCoinStop.Enabled = true;
+                if (checkCoinStop.Enabled && checkBoxSkip.Enabled && checkBoxSkip.Checked)
+                    checkCrownMax.Enabled = true;
             }
             else
+            {
                 textCoinStop.Enabled = false;
+                checkCrownMax.Enabled = false;
+            }
         }
 
         private void textCoinStop_TextChanged(object sender, EventArgs e)
@@ -425,6 +441,16 @@ namespace CATSBot2
         private void metroComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             SettingsManager.settings.latency = comboLatency.SelectedIndex + 1;
+        }
+
+        private void checkCrownMax_CheckedChanged(object sender, EventArgs e)
+        {
+            SettingsManager.settings.crownMax = checkCrownMax.Checked;
+        }
+
+        private void checkCrownMax_EnabledChanged(object sender, EventArgs e)
+        {
+            SettingsManager.settings.crownMaxEnabled = checkCrownMax.Enabled;
         }
     }
 }

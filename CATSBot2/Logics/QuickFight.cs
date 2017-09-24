@@ -11,10 +11,11 @@ namespace CATSBot2.Logics
     static class QuickFight
     {
         public static bool reachedMax = false;
+        public static bool underCoins = false;
 
-        public static Messages Run(bool careForStageMax = true, bool careForSkips = true, int loops = 1)
+        public static Messages Run(bool careForStageMax = true, bool careForSkips = true, bool forCrownMax = false, int loops = 1)
         {
-            if (!SettingsManager.settings.quickFight && careForStageMax)
+            if ((!SettingsManager.settings.quickFight && careForStageMax) || (SettingsManager.settings.crownMax && SettingsManager.settings.crownMaxEnabled && !forCrownMax))
                 return Messages.NotInFuncion;
             
             for (int i = 0; i < loops; i++)
@@ -46,10 +47,14 @@ namespace CATSBot2.Logics
 
                 if (!opponentFound && SettingsManager.settings.coinStop && Game.ReadImageValue(Resources.Coins).ElementAt(0) <= SettingsManager.settings.coins)
                 {
+                    Logger.Log("Reached minimum coins");
+                    underCoins = true;
                     opponentFound = true;
                     if (!Game.FindButton(Resources.Skip, 7))
                         return Messages.Restart;
                 }
+                else
+                    underCoins = false;
             
 
                 while (!opponentFound)
