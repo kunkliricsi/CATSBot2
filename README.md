@@ -1,5 +1,5 @@
 # CATSBot2
-updated version of CATSBot.net's bot
+Updated version of CATSBot.net's bot
 
 ## Table of contents
 1. [Introduction](#introduction)
@@ -16,6 +16,7 @@ updated version of CATSBot.net's bot
         1. [Stage Max](#stage-max)
         2. [Hibernate in](#hibernate-in)
     5. [Latency settings](#latency-settings)
+3. [Starting the bot](#starting-the-bot)
 	
 ## Introduction
 ## Settings
@@ -31,3 +32,4 @@ updated version of CATSBot.net's bot
 #### Stage Max
 #### Hibernate in
 ### Latency settings
+## Starting the bot
