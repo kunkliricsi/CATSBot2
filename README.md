@@ -16,7 +16,7 @@ An updated version of CATSBot.net's bot
         1. [Stage Max](#stage-max)
         2. [Hibernate in](#hibernate-in)
     5. [Latency settings](#latency-settings)
-3. [Starting the bot](#starting/stopping-the-bot)
+3. [Starting the bot](#startingstopping-the-bot)
 	
 ## Introduction
 ## Settings
