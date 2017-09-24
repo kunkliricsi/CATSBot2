@@ -15,6 +15,7 @@ namespace CATSBot2.DB
     {
         public string adbPath;
         public string champTimeString;
+        public string boxTimeString;
 
         [XmlIgnore]
         public DateTime champTime;
@@ -23,7 +24,8 @@ namespace CATSBot2.DB
 
         [XmlIgnore]
         public CATSimage champMach;
-        
+
+        public int latency;
         public int healthThreshold;
         public int champMachInt;
         public int coins;
@@ -46,8 +48,11 @@ namespace CATSBot2.DB
             adbPath = "";
             healthThreshold = 1000;
             coins = 0;
+            latency = 1;
             champTime = new DateTime();
+            boxTime = new DateTime();
             champTimeString = "";
+            boxTimeString = "";
             champMach = Resources.Mach1;
             hiberTime = 0.0d;
             quickFight = false;
@@ -58,6 +63,11 @@ namespace CATSBot2.DB
             boxSkip = false;
             stageMax = false;
             hiber = false;
+        }
+
+        public int GetLatency()
+        {
+            return latency + 2;
         }
 
         public bool Initialize()

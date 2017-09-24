@@ -8,6 +8,7 @@ using CATSBot2.Core;
 using CATSBot2.Logics;
 using CATSBot2.DB;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace CATSBot2
 {
@@ -170,6 +171,7 @@ namespace CATSBot2
             checkHiber.Checked = SettingsManager.settings.hiber;
             checkChamp.Checked = SettingsManager.settings.champ;
             comboChampMach.SelectedIndex = SettingsManager.settings.champMachInt - 1;
+            comboLatency.SelectedIndex = SettingsManager.settings.latency - 1;
             
         }
 
@@ -367,7 +369,12 @@ namespace CATSBot2
 
         private void comboChampMach_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SettingsManager.settings.champMach = (CATSimage)comboChampMach.SelectedItem;
+            if (comboChampMach.SelectedIndex == 0)
+                SettingsManager.settings.champMach = Resources.Mach1;
+            else if (comboChampMach.SelectedIndex == 1)
+                SettingsManager.settings.champMach = Resources.Mach2;
+            else
+                SettingsManager.settings.champMach = Resources.Mach3;
         }
 
         private void checkCoinStop_CheckedChanged(object sender, EventArgs e)
@@ -392,8 +399,7 @@ namespace CATSBot2
 
         private void metroTabControl_Selected(object sender, TabControlEventArgs e)
         {
-            textLog.SelectionStart = textLog.Text.Length;
-            textLog.ScrollToCaret();
+            textLog.AppendText("");
         }
 
         private void linkAbout1_Click(object sender, EventArgs e)
@@ -414,6 +420,11 @@ namespace CATSBot2
         private void linkAbout4_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/kunkliricsi/CATSBot2/blob/master/README.md");
+        }
+
+        private void metroComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SettingsManager.settings.latency = comboLatency.SelectedIndex + 1;
         }
     }
 }

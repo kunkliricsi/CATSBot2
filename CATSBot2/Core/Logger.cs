@@ -24,7 +24,7 @@ namespace CATSBot2.Core
             if (debug)
             {
 #if Debug
-                Console.WriteLine(text);
+                mainform.AppendText(text);
 #endif
             }
             else

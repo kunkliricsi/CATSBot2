@@ -40,6 +40,9 @@ namespace CATSBot2.Core
 
         public static bool RepeatFindButton(CATSimage button, int seconds = 2, int sleep = 0)
         {
+            if (ImageRecognition.FindButton(button, SettingsManager.settings.GetLatency()) > 0)
+                return true;
+
             for (int i = 0; i < seconds; i++)
             {
                 if (ImageRecognition.FindButton(button, 2) > 0)
@@ -111,7 +114,7 @@ namespace CATSBot2.Core
                 else if (Game.FindButton(Resources.LabelLegendary))
                     BoxOpener.OpenBox(false);
                 else if (Game.FindButton(Resources.LabelSuper))
-                    BoxOpener.OpenBox(false);
+                    BoxOpener.OpenBox(false);   // Else label gangbox
                 else
                 {
                     Game.RestartApp();
@@ -139,7 +142,7 @@ namespace CATSBot2.Core
             ADB.ExitMemu();
         }
 
-        public static Bitmap TakeScreenshot(CATSimage button = null, bool keepSize = false)
+        public static Bitmap TakeScreenshot(CATSimage button = null, bool keepSize = true)
         {
             return ADB.TakeScreenshot(button, keepSize);
         }

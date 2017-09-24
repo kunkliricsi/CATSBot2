@@ -22,17 +22,26 @@ namespace CATSBot2.Logics
 
         private static Messages UnlockBox()
         {
-            if (!Game.RepeatFindButton(Resources.QuickFight, 2, 200))
+            if (!Game.RepeatFindButton(Resources.QuickFight, SettingsManager.settings.GetLatency() - 1, 200))
                 return Messages.Restart;
 
-            if (!Game.ClickButtonWithFind(Resources.RegularBox))
-                Game.ClickButtonWithFind(Resources.SuperBox);
+            if (Game.ClickButtonWithFind(Resources.RegularBox))
+            {
+                Logger.Log("Unlocking Regular box.");
+                SettingsManager.settings.boxTime = DateTime.Now.AddHours(2);
+            }
+            else if (Game.ClickButtonWithFind(Resources.SuperBox))
+            {
+                Logger.Log("Unlocking Super box.");
+                SettingsManager.settings.boxTime = DateTime.Now.AddHours(6);
+            }
+            else
+                return Messages.NotInFuncion;
 
             if (Game.FindButton(Resources.Unlock, 3))
             {
-                Logger.Log("Unlocking box...");
+                Logger.Log(" Opens at: " + SettingsManager.settings.boxTime.ToString("HH:mm:ss tt"), newLine: false);
                 Game.ClickButton(Resources.Unlock, 0.8);
-
                 return Messages.Found;
             }
 
@@ -44,7 +53,7 @@ namespace CATSBot2.Logics
             if (!(SettingsManager.settings.boxSkip && (!SettingsManager.settings.quickFight || (QuickFight.reachedMax && !SettingsManager.settings.stageMax))))
                 return Messages.NotInFuncion;
 
-            if (!Game.RepeatFindButton(Resources.QuickFight, 4))
+            if (!Game.RepeatFindButton(Resources.QuickFight, SettingsManager.settings.GetLatency()))
                 return Messages.Restart;
 
 
@@ -103,7 +112,7 @@ namespace CATSBot2.Logics
 
             } while (running);
 
-            if (!Game.RepeatFindButton(Resources.QuickFight, 4))
+            if (!Game.RepeatFindButton(Resources.QuickFight, SettingsManager.settings.GetLatency()))
                 return Messages.Restart;
 
             return Messages.OK;
@@ -127,9 +136,12 @@ namespace CATSBot2.Logics
 
             if (isSuperOrRegular)
                 boxes--;
+            Game.RandomSleep(1000, 2500);
 
             if (Game.ClickButtonWithFind(Resources.UncleTony, 2, 0.8))
             {
+                Logger.Log("Opening Uncle Tony's present...");
+                SettingsManager.currentStatistics.watchedVideos += 0.50;
                 Game.RandomSleep(36000, 39000);
                 bool collect;
                 tries = 0;
@@ -137,7 +149,7 @@ namespace CATSBot2.Logics
                 {
                     Game.ClickBack();
                     Game.RandomSleep(1000, 4000);
-                    collect = Game.FindButton(Resources.Collect);
+                    collect = Game.ClickButtonWithFind(Resources.Collect, tolerance: 1);
                 } while (!collect && tries < 7);
 
                 if (tries >= 7)
@@ -152,7 +164,7 @@ namespace CATSBot2.Logics
             if (!SettingsManager.settings.box)
                 return Messages.NotInFuncion;
 
-            if (!Game.RepeatFindButton(Resources.QuickFight, 4))
+            if (!Game.RepeatFindButton(Resources.QuickFight, SettingsManager.settings.GetLatency()))
                 return Messages.Restart;
 
             Logger.Log("<<Starting Box Opening session>>");
@@ -171,9 +183,13 @@ namespace CATSBot2.Logics
             }
             #endregion
 
+            if (SettingsManager.settings.boxTime.CompareTo(DateTime.Now) > 0 && (!SettingsManager.settings.boxSkip || (SettingsManager.settings.quickFight && !QuickFight.reachedMax)))
+                return Messages.NotInFuncion;
+
             if (boxes <= 0)
             {
                 Logger.Log("Looking for available boxes");
+                SettingsManager.settings.boxTime = DateTime.MinValue;
                 boxes = Game.FindAllButtons(Resources.RegularBox);
                 boxes += Game.FindAllButtons(Resources.SuperBox);
 
@@ -197,7 +213,7 @@ namespace CATSBot2.Logics
                 #region Open Unlocked Boxes 
                 Logger.Log("Looking for openable boxes...");
 
-                if (!Game.RepeatFindButton(Resources.QuickFight, 4))
+                if (!Game.RepeatFindButton(Resources.QuickFight, SettingsManager.settings.GetLatency()))
                     return Messages.Restart;
 
                 arrows = Game.FindAllButtons(Resources.Arrow);
@@ -213,7 +229,7 @@ namespace CATSBot2.Logics
                 #region Start Unlocking
                 Logger.Log("Looking for boxes to unlock...");
 
-                if (!Game.RepeatFindButton(Resources.QuickFight, 4))
+                if (!Game.RepeatFindButton(Resources.QuickFight, SettingsManager.settings.GetLatency()))
                     return Messages.Restart;
 
                 timer = Game.FindButton(Resources.BoxTimer);

@@ -47,6 +47,8 @@ namespace CATSBot2.DB
             }
             else
                 settings = new Settings();
+
+            settings.boxTime = settings.boxTimeString == "" ? DateTime.MinValue : DateTime.Parse(settings.boxTimeString);
             settings.champTime = settings.champTimeString == "" ? DateTime.MinValue : DateTime.Parse(settings.champTimeString);
             settings.champMach = settings.champMachInt == 1 ? Resources.Mach1 : settings.champMachInt == 2 ? Resources.Mach2 : Resources.Mach3;
         }
@@ -55,6 +57,7 @@ namespace CATSBot2.DB
         {
             try
             {
+                settings.boxTimeString = settings.boxTime.ToString();
                 settings.champTimeString = settings.champTime.ToString();
                 settings.champMachInt = settings.champMach.Equals(Resources.Mach1) ? 1 : settings.champMach.Equals(Resources.Mach2) ? 2 : 3;
                 var xmlserializer = new XmlSerializer(typeof(Settings));

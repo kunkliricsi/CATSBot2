@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.metroTabControl = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPageSettings = new MetroFramework.Controls.MetroTabPage();
+            this.comboLatency = new MetroFramework.Controls.MetroComboBox();
+            this.labelLatency = new MetroFramework.Controls.MetroLabel();
             this.checkQuickFight = new MetroFramework.Controls.MetroCheckBox();
             this.textCoinStop = new MetroFramework.Controls.MetroTextBox();
             this.checkCoinStop = new MetroFramework.Controls.MetroCheckBox();
@@ -103,6 +105,8 @@
             // 
             // metroTabPageSettings
             // 
+            this.metroTabPageSettings.Controls.Add(this.comboLatency);
+            this.metroTabPageSettings.Controls.Add(this.labelLatency);
             this.metroTabPageSettings.Controls.Add(this.checkQuickFight);
             this.metroTabPageSettings.Controls.Add(this.textCoinStop);
             this.metroTabPageSettings.Controls.Add(this.checkCoinStop);
@@ -128,6 +132,37 @@
             this.metroTabPageSettings.VerticalScrollbarBarColor = true;
             this.metroTabPageSettings.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPageSettings.VerticalScrollbarSize = 10;
+            // 
+            // comboLatency
+            // 
+            this.comboLatency.FormattingEnabled = true;
+            this.comboLatency.ItemHeight = 23;
+            this.comboLatency.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.comboLatency.Location = new System.Drawing.Point(229, 266);
+            this.comboLatency.Name = "comboLatency";
+            this.comboLatency.Size = new System.Drawing.Size(44, 29);
+            this.comboLatency.TabIndex = 21;
+            this.comboLatency.UseSelectable = true;
+            this.comboLatency.SelectedIndexChanged += new System.EventHandler(this.metroComboBox1_SelectedIndexChanged);
+            // 
+            // labelLatency
+            // 
+            this.labelLatency.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.labelLatency.Location = new System.Drawing.Point(1, 269);
+            this.labelLatency.Name = "labelLatency";
+            this.labelLatency.Size = new System.Drawing.Size(234, 23);
+            this.labelLatency.TabIndex = 20;
+            this.labelLatency.Text = "Increase value for slower computers";
             // 
             // checkQuickFight
             // 
@@ -506,10 +541,10 @@
             this.labelAboutDate.FontSize = MetroFramework.MetroLabelSize.Small;
             this.labelAboutDate.Location = new System.Drawing.Point(3, 280);
             this.labelAboutDate.Name = "labelAboutDate";
-            this.labelAboutDate.Size = new System.Drawing.Size(119, 15);
+            this.labelAboutDate.Size = new System.Drawing.Size(114, 15);
             this.labelAboutDate.TabIndex = 15;
-            this.labelAboutDate.Text = "version_1.0 2017-09-23";
-            this.labelAboutDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelAboutDate.Text = "version1.0 2017-09-23";
+            this.labelAboutDate.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // linkAbout4
             // 
@@ -762,6 +797,8 @@
         private MetroFramework.Controls.MetroLabel labelAbout7;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroLabel labelAboutDate;
+        private MetroFramework.Controls.MetroComboBox comboLatency;
+        private MetroFramework.Controls.MetroLabel labelLatency;
     }
 }
 

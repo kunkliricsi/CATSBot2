@@ -39,10 +39,10 @@ namespace CATSBot2.Logics
 
         private static Messages AttackWithMach(CATSimage button)
         {
-            if (!Game.RepeatFindButton(Resources.Championship, 4))
+            if (!Game.RepeatFindButton(Resources.Championship, SettingsManager.settings.GetLatency()))
                 return Messages.Restart;
 
-            Logger.Log("Setting to machine: " + button.Name);
+            Logger.Log("Setting to loadout: " + button.Name);
             SetMach(button);
 
             if (!Game.FindAndClickButtonWithSleep(Resources.Championship, 3))
@@ -50,23 +50,23 @@ namespace CATSBot2.Logics
 
             if (!Game.FindAndClickButton(Resources.Fight, 3, 1))
                 return Messages.Restart;
-            Logger.Log("Started fighting...");
+            Logger.Log("Started fighting. ");
 
-            Logger.Log("Waiting to end...");
-            if (!Game.FindAndClickButtonWithSleep(Resources.OK, 420))
+            Logger.Log("Waiting to end...", newLine: false);
+            if (!Game.FindAndClickButtonWithSleep(Resources.OK, 420, 0.5))
                 return Messages.Restart;
             
             Logger.Log("Going back to main screen");
-            if (!Game.RepeatFindButton(Resources.Championship, 4))
+            if (!Game.RepeatFindButton(Resources.Championship, SettingsManager.settings.GetLatency() + 2))
             {
-                if (Game.RepeatFindButton(Resources.Choose, 4))
+                if (Game.RepeatFindButton(Resources.Choose, SettingsManager.settings.GetLatency() - 1))
                 {
                     Logger.Log("We got promoted");
                     Game.ClickButton(Resources.Choose, 0.1);
                     Game.RandomSleep(1000, 4000);
                     if (BoxOpener.OpenBox(false) == Messages.Restart)
                         return Messages.Restart;
-                    if (!Game.RepeatFindButton(Resources.Championship, 4))
+                    if (!Game.RepeatFindButton(Resources.Championship, SettingsManager.settings.GetLatency()))
                         return Messages.Restart;
                 }
                 else
@@ -90,7 +90,7 @@ namespace CATSBot2.Logics
                 return Messages.NotInFuncion;
 
             DateTime compare = SettingsManager.settings.champTime.AddHours(-1);
-            if (!(SettingsManager.settings.champ && (!careForNotInTime || (SettingsManager.settings.champTime.CompareTo(DateTime.Now) <= 0 && !attacked))))
+            if (!(SettingsManager.settings.champ && (!careForNotInTime || (compare.CompareTo(DateTime.Now) <= 0 && !attacked))))
                 return Messages.NotInFuncion;
 
             Logger.Log("<<Starting Championship session>>");
@@ -99,7 +99,7 @@ namespace CATSBot2.Logics
             Messages toReturn = AttackWithMach(Resources.Mach1, Resources.Mach2, Resources.Mach3);
 
             if (toReturn != Messages.OK)
-                Logger.Log("Something happened, can't set original machine back");
+                Logger.Log("Can't set original loadout back");
             else
             {
                 Logger.Log("Settings back to machine: " + SettingsManager.settings.champMach.Name);

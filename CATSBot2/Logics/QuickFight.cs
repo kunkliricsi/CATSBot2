@@ -19,7 +19,7 @@ namespace CATSBot2.Logics
             
             for (int i = 0; i < loops; i++)
             {
-                if (!Game.RepeatFindButton(Resources.QuickFight, 4))
+                if (!Game.RepeatFindButton(Resources.QuickFight, SettingsManager.settings.GetLatency()))
                     return Messages.Restart;
 
                 if (careForStageMax)
@@ -40,21 +40,21 @@ namespace CATSBot2.Logics
 
                 if (!careForSkips)
                     opponentFound = true;
-
-                if (opponentFound && !Game.FindButton(Resources.Skip, 3))
+                
+                if (opponentFound && !Game.FindButton(Resources.Skip, 7))
                     return Messages.Restart;
 
                 if (!opponentFound && SettingsManager.settings.coinStop && Game.ReadImageValue(Resources.Coins).ElementAt(0) <= SettingsManager.settings.coins)
                 {
                     opponentFound = true;
-                    if (!Game.FindButton(Resources.Skip, 3))
+                    if (!Game.FindButton(Resources.Skip, 7))
                         return Messages.Restart;
                 }
             
 
                 while (!opponentFound)
                 {
-                    if (!Game.FindButton(Resources.Skip, 3))
+                    if (!Game.FindButton(Resources.Skip, 7))
                         return Messages.Restart;
 
                     Logger.Log(tries.ToString() + ". Enemy Health: ");

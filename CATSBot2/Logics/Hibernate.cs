@@ -42,6 +42,7 @@ namespace CATSBot2.Logics
                     {
                         if (SettingsManager.settings.champ)
                             Championship.Run(false);
+                        Logger.Log("Hibernating...");
                         ADB.ExitMemu();
                         ADB.Hibernate();
                     }
