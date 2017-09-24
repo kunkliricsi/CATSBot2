@@ -1,5 +1,5 @@
 # CATSBot2
-Updated version of CATSBot.net's bot
+An updated version of CATSBot.net's bot
 
 ## Table of contents
 1. [Introduction](#introduction)
