@@ -13,7 +13,7 @@ An updated version of CATSBot.net's bot
         1. [Open Boxes](#open-boxes)
         2. [Skip 30m](#skip-30m)
     4. [Hibernation](#hibernation)
-        1. [Stage Max](#stage-max)
+        1. [Exit at Stage Max](#exit-at-stage-max)
         2. [Hibernate in](#hibernate-in)
     5. [Latency settings](#latency-settings)
 3. [Starting the bot](#startingstopping-the-bot)
@@ -29,7 +29,7 @@ An updated version of CATSBot.net's bot
 #### Open Boxes
 #### Skip 30m
 ### Hibernation
-#### Stage Max
+#### Exit at Stage Max
 #### Hibernate in
 ### Latency settings
 ## Starting/Stopping the bot
