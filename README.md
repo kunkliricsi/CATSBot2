@@ -33,7 +33,7 @@ Checking this option will add another step to the process. It will check the ene
 #### Stop at coins
 The bot will check how many coins you have, and if its less than the set amount it will stop skipping opponents, and will work again just as it did in the original bot, however if you go back above the coin level (by opening boxes or defending your league position), it will start skipping again.
 ### Fight Championship
-if checked, when starting the bot, it will try to read how much time is left from the championship, and if it successfully gets the value, it will compete in the championship 1 hour before it ends. Because the text, which shows the time, is so small, the program cannot always determine it correctly, so when it can't, it will disable the option, until next start. Make sure, you select the loadout you want to quickfight with in the list box(loadout: 1, 2, 3), so the bot can set it back, before attacking again. The bot will also compete just before it will [hibernate (see below)](#hibernation), because why not.
+if checked, when starting the bot, it will try to read how much time is left from the championship, and if it successfully gets the value, it will compete in the championship 1 hour before it ends. Because the text, which shows the time, is so small, the program cannot always determine it correctly, so when it can't, it will disable the option, until next start. Make sure, you select the loadout you want to quickfight with in the list box(loadout: 1, 2, 3), so the bot can set it back, before attacking again. The bot will also compete just before it will [hibernate (see below)](#hibernation), if the option is checked.
 ### Box opening
 I would advise you to start the bot with a box to unlock, because if the bot unlocks the box it will know when will it be ready to open, thus it won't do all the unnecessary steps to determine if there are openable boxes. You could spare a lot of time with this.
 #### Open Boxes
@@ -43,7 +43,7 @@ If you enable this setting will make the bot watch videos. But it only works if 
 #### Crown Max
 This setting will make the bot only fight quick fights until all the boxes get max crowns (12), it will then start unlocking boxes and watching videos, if all the boxes have been opened it will start fighting again.
 ### Hibernation
-Before every hibernation, the bot will compete in the [championship](#fight-championship).
+Before every hibernation, the bot will compete in the [championship](#fight-championship), if the Fight Championship option is checked.
 #### Exit at Stage Max
 If checked the bot will stop everything and close the emulator after you reach stage max.
 #### Hibernate in
