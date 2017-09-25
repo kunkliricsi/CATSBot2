@@ -12,6 +12,7 @@ An updated version of CATSBot.net's bot
     3. [Box opening](#box-opening)
         1. [Open Boxes](#open-boxes)
         2. [Skip 30m](#skip-30m)
+	3. [Crown Max](#crown-max)
     4. [Hibernation](#hibernation)
         1. [Exit at Stage Max](#exit-at-stage-max)
         2. [Hibernate in](#hibernate-in)
@@ -28,6 +29,7 @@ An updated version of CATSBot.net's bot
 ### Box opening
 #### Open Boxes
 #### Skip 30m
+#### Crown Max
 ### Hibernation
 #### Exit at Stage Max
 #### Hibernate in
