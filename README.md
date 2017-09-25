@@ -60,4 +60,4 @@ Stopping the bot, you first press the big toogle button which sets it into an in
 - For quickfighting take a wooden bodypart, and attach a weapon with one-shot capable damage, the best one is the minigun.
 - From my personal experience it is best to set the bot to crown maxing. You will get the money back you lost from skipping by opening boxes, and your rating will still go up.
 - Just a taste of what its capable of: from ~5000 attacks I've won ~4520, with a winrate of 90.3%. The avarage skips it does per attack is 1.21. Since implementing the box opening option (approx. 2days ago), it opened me ~100 boxes.
-- __Use the bot with full responsibility. From the moment you start your bot you are considered a cheater. Be prepared to get banned, because it is more than possible that the bot gets detected, althoug I've made everything that I could to evade just that.__
+- __Use the bot with full responsibility. From the moment you start your bot you are considered a cheater. Be prepared to get banned, because it is more than possible that the bot gets detected, although I've made everything that I could to evade just that.__
