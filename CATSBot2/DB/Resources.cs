@@ -79,6 +79,7 @@ namespace CATSBot2.DB
         public static CATSimage LabelLegendary;
         public static CATSimage LabelSuper;
         public static CATSimage LabelRegular;
+        public static CATSimage LabelGangbox;
 
         static Resources()
         {
@@ -107,7 +108,7 @@ namespace CATSBot2.DB
             ChampTime = new CATSimage("Championship Time", new Rectangle(215, 650, 100, 35), "");
             Coins = new CATSimage("Coins", new Rectangle(40, 10, 200, 60), "");
             Choose = new CATSimage("Choose Stickers", new Rectangle(440, 540, 400, 140), "button_choose");
-            Crown = new CATSimage("Box Crown", new Rectangle(120, 65, 380, 400), "box_crown");
+            Crown = new CATSimage("Box Crown", new Rectangle(130, 170, 280, 380), "box_crown");
             Box1 = new CATSimage("Box 1", new Rectangle(135, 70, 175, 240), "arrow");
             Box2 = new CATSimage("Box 2", new Rectangle(310, 70, 175, 240), "arrow");
             Box3 = new CATSimage("Box 3", new Rectangle(135, 305, 175, 240), "arrow");
@@ -118,6 +119,7 @@ namespace CATSBot2.DB
             LabelLegendary = new CATSimage("Legendary Box", new Rectangle(485, 115, 320, 100), "label_legendary");
             LabelSuper = new CATSimage("Super Box", new Rectangle(530, 115, 230, 100), "label_super");
             LabelRegular = new CATSimage("Regular Box", new Rectangle(505, 115, 250, 85), "label_regular");
+            LabelGangbox = new CATSimage("Gang Box", new Rectangle(530, 115, 220, 85), "label_gangbox");
         }
     }
 }

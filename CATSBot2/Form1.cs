@@ -189,6 +189,8 @@ namespace CATSBot2
                     checkCoinStop.Enabled = true;
                     textCoinStop.Enabled = true;
                 }
+                if (checkSkip.Checked && checkCoinStop.Checked && checkBoxSkip.Enabled && checkBoxSkip.Checked)
+                    checkCrownMax.Enabled = true;
             }
             else
             {
@@ -196,6 +198,7 @@ namespace CATSBot2
                 textSkip.Enabled = false;
                 checkCoinStop.Enabled = false;
                 textCoinStop.Enabled = false;
+                checkCrownMax.Enabled = false;
             }
         }
 
@@ -306,7 +309,7 @@ namespace CATSBot2
             else if (toogleState == CheckState.Checked)
             {
                 toogleState = CheckState.Indeterminate;
-                AppendLog(Environment.NewLine + "ABORTING AFTER THIS ROUND FINISHES---------------");
+                AppendLog(Environment.NewLine + "ABORTING SOON----------------------------------------------------------");
                 toogleStartStop.Checked = true;
             }
             else if (!toogleStartStop.Checked && toogleState == CheckState.Indeterminate)
@@ -451,6 +454,14 @@ namespace CATSBot2
         private void checkCrownMax_EnabledChanged(object sender, EventArgs e)
         {
             SettingsManager.settings.crownMaxEnabled = checkCrownMax.Enabled;
+        }
+
+        private void checkBoxSkip_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!checkBoxSkip.Enabled)
+                checkCrownMax.Enabled = false;
+            else if (checkBoxSkip.Checked)
+                checkCrownMax.Enabled = true;
         }
     }
 }

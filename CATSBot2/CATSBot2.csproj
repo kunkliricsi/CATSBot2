@@ -137,6 +137,7 @@
     <Compile Include="Ocr.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Resources\label_gangbox_720.png" />
     <None Include="Resources\label_super_720.png" />
     <None Include="Resources\label_regular_720.png" />
     <None Include="Resources\label_legendary_720.png" />

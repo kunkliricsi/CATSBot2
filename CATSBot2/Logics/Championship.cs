@@ -66,8 +66,11 @@ namespace CATSBot2.Logics
                     Game.RandomSleep(1000, 4000);
                     if (BoxOpener.OpenBox(false) == Messages.Restart)
                         return Messages.Restart;
+
                     if (!Game.RepeatFindButton(Resources.Championship, SettingsManager.settings.GetLatency()))
                         return Messages.Restart;
+
+                    SettingsManager.settings.champTime.AddHours(48);
                 }
                 else
                 {

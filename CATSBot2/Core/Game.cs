@@ -107,21 +107,21 @@ namespace CATSBot2.Core
 
         public static void RestartProtocol()
         {
-            if (!Game.RepeatFindButton(Resources.QuickFight, 4))
+            if (!RepeatFindButton(Resources.QuickFight, 4))
             {
-                if (Game.ClickButtonWithFind(Resources.Choose))
-                    BoxOpener.OpenBox(false);
-                else if (Game.FindButton(Resources.LabelLegendary))
-                    BoxOpener.OpenBox(false);
-                else if (Game.FindButton(Resources.LabelSuper))
-                    BoxOpener.OpenBox(false);   // Else label gangbox
-                else
+                if (ClickButtonWithFind(Resources.Choose))
                 {
-                    Game.RestartApp();
-
-                    if (Game.ClickButtonWithFind(Resources.Choose))
-                        BoxOpener.OpenBox();
+                    BoxOpener.OpenBox(false);
+                    SettingsManager.settings.champTime.AddHours(48);
                 }
+                else if (FindButton(Resources.LabelLegendary))
+                    BoxOpener.OpenBox(false);
+                else if (FindButton(Resources.LabelSuper))
+                    BoxOpener.OpenBox(false);
+                else if (FindButton(Resources.LabelGangbox))
+                    BoxOpener.OpenBox(false);
+                else
+                    RestartApp();
             }
         }
 

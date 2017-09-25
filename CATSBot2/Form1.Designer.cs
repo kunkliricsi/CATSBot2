@@ -276,6 +276,7 @@
             this.checkBoxSkip.Text = "Skip 30m";
             this.checkBoxSkip.UseSelectable = true;
             this.checkBoxSkip.CheckedChanged += new System.EventHandler(this.checkBoxSkip_CheckedChanged);
+            this.checkBoxSkip.EnabledChanged += new System.EventHandler(this.checkBoxSkip_EnabledChanged);
             // 
             // textHiber
             // 

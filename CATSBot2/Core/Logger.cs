@@ -11,7 +11,7 @@ namespace CATSBot2.Core
     internal static class Logger
     {
         private static string logText, previousText;
-        private static int counter = 0;
+        private static int counter = 2;
         private static mainForm mainForm;
 
         public static void SetForm(mainForm formToSet)
@@ -40,7 +40,7 @@ namespace CATSBot2.Core
                 else
                 {
                     formattedText = (newLine ? Environment.NewLine + "[" + DateTime.Now.ToString("dd.MM.yy H:mm:ss") + "] " : "") + text;
-                    counter = 0;
+                    counter = 2;
                 }
                 logText += formattedText;
                 mainForm.AppendLog(formattedText);

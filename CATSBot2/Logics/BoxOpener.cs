@@ -13,7 +13,7 @@ namespace CATSBot2.Logics
     static class BoxOpener
     {
         private static int arrows, boxes = 0;
-        private static bool sponsor, timer;
+        private static bool sponsor, timer, maxedCrowns = false;
 
         public static void SetBoxes()
         {
@@ -61,14 +61,8 @@ namespace CATSBot2.Logics
             Game.ClickButtonWithFind(Resources.BoxTimer, tolerance: 0.8);
 
             Game.RandomSleep(500, 1000);
-            if (Game.FindAllButtons(Resources.OpenNow) == 2)
-            {
-                Game.ClickBack();
-                return Messages.NotInFuncion;
-            }
 
-
-            bool running = true;
+            bool running = Game.FindAllButtons(Resources.OpenNow) == 2 ? false : true;
             int openNow = 0;
             do
             {
@@ -137,6 +131,7 @@ namespace CATSBot2.Logics
 
             if (isSuperOrRegular)
                 boxes--;
+
             Game.RandomSleep(1000, 2500);
 
             if (Game.ClickButtonWithFind(Resources.UncleTony, 2, 0.8))
@@ -190,6 +185,7 @@ namespace CATSBot2.Logics
             if (boxes <= 0)
             {
                 Logger.Log("Looking for available boxes");
+                maxedCrowns = false;
                 SettingsManager.settings.boxTime = DateTime.MinValue;
                 boxes = Game.FindAllButtons(Resources.RegularBox);
                 boxes += Game.FindAllButtons(Resources.SuperBox);
@@ -198,20 +194,7 @@ namespace CATSBot2.Logics
                 {
                     Logger.Log("No available boxes");
                     if (SettingsManager.settings.crownMax && SettingsManager.settings.crownMaxEnabled && !QuickFight.underCoins)
-                    {
-                        int crowns;
-                        do
-                        {
-                            if (QuickFight.Run(false, forCrownMax: true) == Messages.Restart)
-                                return Messages.Restart;
-
-                            if (QuickFight.underCoins)
-                                break;
-
-                            crowns = Game.FindAllButtons(Resources.Crown);
-                            Logger.Log(12 - crowns + " crowns left until box opening");
-                        } while (crowns != 12);
-                    }
+                        break;
                     else
                     {
                         if (QuickFight.Run(false, false, loops: 5) == Messages.Restart)
@@ -226,6 +209,39 @@ namespace CATSBot2.Logics
                     boxes += Game.FindAllButtons(Resources.SuperBox);
                 }
             }
+
+            #region Crown Maxing
+            if (SettingsManager.settings.crownMax && SettingsManager.settings.crownMaxEnabled && !maxedCrowns)
+            {
+                if (!Game.FindButton(Resources.QuickFight, SettingsManager.settings.GetLatency()))
+                    return Messages.Restart;
+
+                if (Game.FindAllButtons(Resources.Crown) == 12)
+                    maxedCrowns = true;
+                else
+                {
+                    maxedCrowns = false;
+                    Logger.Log("Maxing crowns...");
+                    int crowns;
+                    do
+                    {
+                        if (QuickFight.Run(false, forCrownMax: true, loops: 5) == Messages.Restart)
+                            return Messages.Restart;
+
+                        if (QuickFight.underCoins)
+                            break;
+
+                        if (!Game.FindButton(Resources.QuickFight, SettingsManager.settings.GetLatency()))
+                            return Messages.Restart;
+
+                        crowns = Game.FindAllButtons(Resources.Crown);
+                        Logger.Log(12 - crowns + " crowns left until box opening");
+                    } while (crowns != 12);
+
+                    maxedCrowns = true;
+                }
+            }
+            #endregion
 
             if (boxes > 0)
             {
