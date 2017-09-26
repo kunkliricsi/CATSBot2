@@ -119,12 +119,13 @@ namespace CATSBot2.Logics
             SettingsManager.currentStatistics.boxes++;
 
             int tries = 0;
-            while (!Game.FindButton(Resources.Collect) && tries < 20)
+            while (!Game.FindButton(Resources.Collect) && tries < 30)
             {
                 Game.ClickButton(Resources.Middle);
+                tries++;
             }
 
-            if (tries >= 20)
+            if (tries >= 30)
                 return Messages.Restart;
 
             Game.ClickButtonWithFind(Resources.Collect);
