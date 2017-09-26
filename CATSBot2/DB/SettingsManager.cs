@@ -21,8 +21,8 @@ namespace CATSBot2.DB
         static SettingsManager()
         {
             LoadSettings();
-            LoadStatistics();
             currentStatistics = new Statistics();
+            LoadStatistics();
         }
 
         private static void LoadSettings()
@@ -98,6 +98,8 @@ namespace CATSBot2.DB
             }
             else
                 allStatistics = new Statistics();
+
+            currentStatistics.currentWinStreak = allStatistics.currentWinStreak;
         }
 
         public static void UpdateStatistics()

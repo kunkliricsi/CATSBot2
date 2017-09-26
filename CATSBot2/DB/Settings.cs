@@ -19,6 +19,7 @@ namespace CATSBot2.DB
 
         [XmlIgnore]
         public DateTime champTime;
+
         [XmlIgnore]
         public DateTime boxTime;
 

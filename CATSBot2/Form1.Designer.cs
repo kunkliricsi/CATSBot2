@@ -98,11 +98,10 @@
             this.metroTabControl.Location = new System.Drawing.Point(23, 63);
             this.metroTabControl.Multiline = true;
             this.metroTabControl.Name = "metroTabControl";
-            this.metroTabControl.SelectedIndex = 0;
+            this.metroTabControl.SelectedIndex = 1;
             this.metroTabControl.Size = new System.Drawing.Size(295, 343);
             this.metroTabControl.TabIndex = 0;
             this.metroTabControl.UseSelectable = true;
-            this.metroTabControl.Selected += new System.Windows.Forms.TabControlEventHandler(this.metroTabControl_Selected);
             // 
             // metroTabPageSettings
             // 
@@ -459,6 +458,7 @@
             this.metroTabPageLog.VerticalScrollbarBarColor = true;
             this.metroTabPageLog.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPageLog.VerticalScrollbarSize = 10;
+            this.metroTabPageLog.Click += new System.EventHandler(this.metroTabPageLog_Click);
             // 
             // textLog
             // 
@@ -491,6 +491,7 @@
             this.metroTabPageStat.VerticalScrollbarBarColor = true;
             this.metroTabPageStat.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPageStat.VerticalScrollbarSize = 10;
+            this.metroTabPageStat.Click += new System.EventHandler(this.metroTabPageStat_Click);
             // 
             // toogleStatText
             // 

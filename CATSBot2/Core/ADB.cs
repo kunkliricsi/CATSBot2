@@ -142,9 +142,13 @@ namespace CATSBot2.Core
         {
             try
             {
-                RunCommand("adb.exe", "shell screencap -p /sdcard/screenshot.png");
+                string error = "";
+                error += RunCommand("adb.exe", "shell screencap -p /sdcard/screenshot.png");
                 RunCommand("adb.exe", "pull /sdcard/screenshot.png");
-                RunCommand("adb.exe", "shell rm /sdcard/screenshot.png");
+                error += RunCommand("adb.exe", "shell rm /sdcard/screenshot.png");
+
+                if (error != "")
+                    Game.RestartApp();
 
                 Bitmap screenBitmap;
                 if (File.Exists("screenshot.png"))

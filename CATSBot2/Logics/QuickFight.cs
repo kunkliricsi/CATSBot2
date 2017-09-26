@@ -22,16 +22,18 @@ namespace CATSBot2.Logics
             {
                 if (!Game.RepeatFindButton(Resources.QuickFight, SettingsManager.settings.GetLatency()))
                     return Messages.Restart;
-
-                if (careForStageMax)
-                    if (Game.FindButton(Resources.StageMax, 2))
+                
+                if (Game.FindButton(Resources.StageMax, 2))
+                {
+                    reachedMax = true;
+                    if (careForStageMax)
                     {
                         Logger.Log("Reached Stage Max");
-                        reachedMax = true;
                         return Messages.Hibernate;
                     }
-                    else
-                        reachedMax = false;
+                }
+                else
+                    reachedMax = false;
 
                 Logger.Log("<<Starting Quick Fight session>>");
                 Game.ClickButton(Resources.QuickFight);

@@ -9,6 +9,7 @@ using CATSBot2.Logics;
 using CATSBot2.DB;
 using System.ComponentModel;
 using System.Drawing;
+using System.Diagnostics;
 
 namespace CATSBot2
 {
@@ -27,6 +28,7 @@ namespace CATSBot2
     {
         private Thread thread;
         private CheckState toogleState;
+        private Stopwatch sw;
 
         public mainForm()
         {
@@ -38,6 +40,7 @@ namespace CATSBot2
             comboChampMach.Items.Add(Resources.Mach1);
             comboChampMach.Items.Add(Resources.Mach2);
             comboChampMach.Items.Add(Resources.Mach3);
+            sw = new Stopwatch();
         }
 
         private string Digitalize(string s, bool dotAllowed = true, bool twoAllowed = true)
@@ -71,7 +74,10 @@ namespace CATSBot2
                 }
 
                 BoxOpener.SetBoxes();
-                
+
+                if (SettingsManager.settings.boxTime.CompareTo(DateTime.Now) > 0)
+                    Logger.Log("Next box opens at: " + SettingsManager.settings.boxTime.ToString());
+
                 while (toogleState == CheckState.Checked && toogleStartStop.Checked)
                 {
                     if (BoxOpener.Run() == Messages.Restart)
@@ -282,9 +288,18 @@ namespace CATSBot2
 
         private void mainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (toogleStartStop.CheckState == CheckState.Checked)
+            {
+                sw.Stop();
+                TimeSpan ts = sw.Elapsed;
+                SettingsManager.currentStatistics.working += ts.TotalHours;
+            }
+
             SettingsManager.SaveSettings();
             SettingsManager.SaveStatistics();
             Logger.SaveLog();
+            if (File.Exists("screenshot.png"))
+                File.Delete("screenshot.png");
             Application.Exit();
         }
 
@@ -297,8 +312,10 @@ namespace CATSBot2
         {
             if (toogleStartStop.Checked && toogleState == CheckState.Unchecked)
             {
+                sw.Restart();
                 SettingsManager.allStatistics += SettingsManager.currentStatistics;
                 SettingsManager.currentStatistics = new Statistics();
+                SettingsManager.currentStatistics.currentWinStreak = SettingsManager.allStatistics.currentWinStreak;
                 UpdateStats();
                 AppendLog(Environment.NewLine + "STARTING---------------------------------------------------------------------");
                 thread = new Thread(BotMainLoop);
@@ -317,6 +334,9 @@ namespace CATSBot2
                 AppendLog(Environment.NewLine + "ABORTING NOW-----------------------------------------------------------");
                 thread.Abort();
                 toogleState = CheckState.Unchecked;
+                sw.Stop();
+                TimeSpan ts = sw.Elapsed;
+                SettingsManager.currentStatistics.working += ts.TotalHours;
             }
         }
 
@@ -331,9 +351,15 @@ namespace CATSBot2
 
         public void UpdateStats()
         {
+            sw.Stop();
+            TimeSpan ts = sw.Elapsed;
+            sw.Restart();
+            SettingsManager.currentStatistics.working += ts.TotalHours;
+
             Statistics stats = toogleStat.Checked ? SettingsManager.allStatistics + SettingsManager.currentStatistics : SettingsManager.currentStatistics;
             int wins = SettingsManager.currentStatistics.wins;
             int losses = SettingsManager.currentStatistics.losses;
+            int streak = SettingsManager.currentStatistics.currentWinStreak;
 
             labelStat.SynchronizedInvoke(() =>
             {
@@ -344,14 +370,14 @@ namespace CATSBot2
                                 + "\nSkips: " + stats.skips
                                 + "\nMost Consequent Skips: " + stats.mostSkips
                                 + "\nAvarage Skips: " + (stats.avarageSkips.Count > 0 ? stats.avarageSkips.Average().ToString("0.00") : "0")
-                                + $"{(!toogleStat.Checked ? "\nCurrent Win Streak: " + stats.currentWinStreak : "")}"
                                 + "\nHighest Win Streak: " + stats.hightestWinStreak
                                 + "\nHighest Lose Streak: " + stats.highestLoseStreak
                                 + "\nOpened Regular + Super boxes: " + stats.boxes
                                 + "\nOpened Sponsor boxes: " + stats.sponsorBoxes
-                                + "\nWatched " + stats.watchedVideos.ToString("0.00") + " minutes of videos";
+                                + "\nWatched " + stats.watchedVideos.ToString("0.00") + " minutes of videos"
+                                + "\nThe bot was running for: " + stats.working.ToString("0.00") + " hours";
 
-                labelWinLoss.Text = "Wins: " + wins + " | Losses: " + losses;
+                labelWinLoss.Text = "Wins: " + wins + " | Losses: " + losses + " | Streak: " + streak;
             });
         }
 
@@ -416,11 +442,6 @@ namespace CATSBot2
                 SettingsManager.settings.coins = coinStop;
         }
 
-        private void metroTabControl_Selected(object sender, TabControlEventArgs e)
-        {
-            textLog.AppendText("");
-        }
-
         private void linkAbout1_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("http://www.catsbot.net");
@@ -462,6 +483,16 @@ namespace CATSBot2
                 checkCrownMax.Enabled = false;
             else if (checkBoxSkip.Checked)
                 checkCrownMax.Enabled = true;
+        }
+
+        private void metroTabPageLog_Click(object sender, EventArgs e)
+        {
+            textLog.AppendText("");
+        }
+
+        private void metroTabPageStat_Click(object sender, EventArgs e)
+        {
+            UpdateStats();
         }
     }
 }

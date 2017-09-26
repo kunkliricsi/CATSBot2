@@ -13,7 +13,7 @@ namespace CATSBot2.Logics
     static class BoxOpener
     {
         private static int arrows, boxes = 0;
-        private static bool sponsor, timer, maxedCrowns = false;
+        private static bool sponsor, maxedCrowns = false;
 
         public static void SetBoxes()
         {
@@ -42,6 +42,7 @@ namespace CATSBot2.Logics
             {
                 Logger.Log(" Opens at: " + SettingsManager.settings.boxTime.ToString("HH:mm:ss tt"), newLine: false);
                 Game.ClickButton(Resources.Unlock, 0.8);
+                Game.ClickBack();
                 return Messages.Found;
             }
 
@@ -53,12 +54,6 @@ namespace CATSBot2.Logics
             if (!(SettingsManager.settings.crownMaxEnabled && SettingsManager.settings.crownMaxEnabled))
                 if (!(SettingsManager.settings.boxSkip && (!SettingsManager.settings.quickFight || (QuickFight.reachedMax && !SettingsManager.settings.stageMax))))
                     return Messages.NotInFuncion;
-
-            if (!Game.RepeatFindButton(Resources.QuickFight, SettingsManager.settings.GetLatency()))
-                return Messages.Restart;
-
-
-            Game.ClickButtonWithFind(Resources.BoxTimer, tolerance: 0.8);
 
             Game.RandomSleep(500, 1000);
 
@@ -82,7 +77,7 @@ namespace CATSBot2.Logics
 
                 if (!running)
                 {
-                    Game.RandomSleep(36000, 39000);
+                    Game.RandomSleep(38000, 42000);
                     Game.ClickBack();
                     Game.RandomSleep(2400, 3000);
                     Game.ClickBack();
@@ -91,7 +86,7 @@ namespace CATSBot2.Logics
                 }
                 else
                 {
-                    Game.RandomSleep(36000, 39000);
+                    Game.RandomSleep(38000, 42000);
                     int tries = 0;
                     do
                     {
@@ -131,7 +126,11 @@ namespace CATSBot2.Logics
             Game.ClickButtonWithFind(Resources.Collect);
 
             if (isSuperOrRegular)
-                boxes--;
+            {
+                SettingsManager.settings.boxTime = DateTime.MinValue;
+                if (--boxes <= 0)
+                    maxedCrowns = false;
+            }
 
             Game.RandomSleep(1000, 2500);
 
@@ -139,7 +138,7 @@ namespace CATSBot2.Logics
             {
                 Logger.Log("Opening Uncle Tony's present...");
                 SettingsManager.currentStatistics.watchedVideos += 0.50;
-                Game.RandomSleep(36000, 39000);
+                Game.RandomSleep(38000, 42000);
                 bool collect;
                 tries = 0;
                 do
@@ -186,21 +185,17 @@ namespace CATSBot2.Logics
             if (boxes <= 0)
             {
                 Logger.Log("Looking for available boxes");
-                maxedCrowns = false;
-                SettingsManager.settings.boxTime = DateTime.MinValue;
                 boxes = Game.FindAllButtons(Resources.RegularBox);
                 boxes += Game.FindAllButtons(Resources.SuperBox);
 
                 while (boxes <= 0)
                 {
                     Logger.Log("No available boxes");
-                    if (SettingsManager.settings.crownMax && SettingsManager.settings.crownMaxEnabled && !QuickFight.underCoins)
+                    if (SettingsManager.settings.crownMaxEnabled && SettingsManager.settings.crownMax && !QuickFight.underCoins)
                         break;
-                    else
-                    {
-                        if (QuickFight.Run(false, false, loops: 5) == Messages.Restart)
-                            return Messages.Restart;
-                    }
+
+                    if (QuickFight.Run(false, false, loops: 5) == Messages.Restart)
+                        return Messages.Restart;
 
                     if (!Game.FindButton(Resources.QuickFight, 3))
                         return Messages.Restart;
@@ -210,6 +205,25 @@ namespace CATSBot2.Logics
                     boxes += Game.FindAllButtons(Resources.SuperBox);
                 }
             }
+
+            #region Open Unlocked Boxes 
+            if (boxes > 0 && SettingsManager.settings.boxTime.CompareTo(DateTime.Now) <= 0)
+            {
+                Logger.Log("Looking for openable boxes...");
+
+                if (!Game.RepeatFindButton(Resources.QuickFight, SettingsManager.settings.GetLatency()))
+                    return Messages.Restart;
+
+                arrows = Game.FindAllButtons(Resources.Arrow);
+
+                if (arrows > 0)
+                {
+                    Game.ClickButtonWithFind(Resources.Arrow);
+                    if (OpenBox() == Messages.Restart)
+                        return Messages.Restart;
+                }
+            }
+            #endregion
 
             #region Crown Maxing
             if (SettingsManager.settings.crownMax && SettingsManager.settings.crownMaxEnabled && !maxedCrowns)
@@ -235,42 +249,36 @@ namespace CATSBot2.Logics
                         if (!Game.FindButton(Resources.QuickFight, SettingsManager.settings.GetLatency()))
                             return Messages.Restart;
 
+                        #region Crown Max Inline Box Opening
+                        arrows = Game.FindAllButtons(Resources.Arrow);
+
+                        if (arrows > 0)
+                        {
+                            Game.ClickButtonWithFind(Resources.Arrow);
+                            if (OpenBox() == Messages.Restart)
+                                return Messages.Restart;
+                        }
+                        #endregion
+
                         crowns = Game.FindAllButtons(Resources.Crown);
-                        Logger.Log(12 - crowns + " crowns left until box opening");
+                        Logger.Log(12 - crowns + " crown(s) left until box opening");
                     } while (crowns != 12);
 
+                    boxes = 4;
                     maxedCrowns = true;
                 }
             }
             #endregion
 
+            #region Start Unlocking
             if (boxes > 0)
             {
-                #region Open Unlocked Boxes 
-                Logger.Log("Looking for openable boxes...");
-
-                if (!Game.RepeatFindButton(Resources.QuickFight, SettingsManager.settings.GetLatency()))
-                    return Messages.Restart;
-
-                arrows = Game.FindAllButtons(Resources.Arrow);
-
-                if (arrows > 0)
-                {
-                    Game.ClickButtonWithFind(Resources.Arrow);
-                    if (OpenBox() == Messages.Restart)
-                        return Messages.Restart;
-                }
-                #endregion
-
-                #region Start Unlocking
                 Logger.Log("Looking for boxes to unlock...");
 
                 if (!Game.RepeatFindButton(Resources.QuickFight, SettingsManager.settings.GetLatency()))
                     return Messages.Restart;
-
-                timer = Game.FindButton(Resources.BoxTimer);
-
-                if (timer)
+                
+                if (Game.ClickButtonWithFind(Resources.BoxTimer, tolerance: 0.8))
                 {
                     WatchVideos();
                 }
@@ -279,10 +287,13 @@ namespace CATSBot2.Logics
                     if (UnlockBox() == Messages.Restart)
                         return Messages.Restart;
 
+                    if (!Game.ClickButtonWithFind(Resources.BoxTimer, tolerance: 0.8))
+                        return Messages.Restart;
+
                     WatchVideos();
                 }
-                #endregion
             }
+            #endregion
 
             SettingsManager.UpdateStatistics();
 
