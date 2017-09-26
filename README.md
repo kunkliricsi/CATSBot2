@@ -1,5 +1,5 @@
 # CATSBot2
-An updated version of CATSBot.net's bot. This project is only for my own personal training and practise. It was made only because I thought I couldn't write anything like this.
+An updated version of CATSBot.net's bot. This project was only made to improve my programming skills. I do not support any illegal activity by using this program.
 
 ## Table of contents
 1. [Introduction](#introduction)
