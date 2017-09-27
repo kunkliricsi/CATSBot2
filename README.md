@@ -45,7 +45,7 @@ This setting will make the bot only fight quick fights until all the boxes get m
 ### Hibernation
 Before every hibernation, the bot will compete in the [championship](#fight-championship), if the Fight Championship option is checked.
 #### Exit at Stage Max
-If checked the bot will stop everything and close the emulator after you reach stage max.
+If checked the bot will stop everything and close the emulator after you reach stage max, unless the crown maxing option is set.
 #### Hibernate in
 This setting means that no matter what happens, the bot will stop everything, close the emulator and hibernate the computer after it reaches the set time. If no time is set, or the time is less than 0.5. The bot will hibernate the computer when you reach stage max.
 ### Latency settings
