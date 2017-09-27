@@ -98,7 +98,7 @@
             this.metroTabControl.Location = new System.Drawing.Point(23, 63);
             this.metroTabControl.Multiline = true;
             this.metroTabControl.Name = "metroTabControl";
-            this.metroTabControl.SelectedIndex = 1;
+            this.metroTabControl.SelectedIndex = 0;
             this.metroTabControl.Size = new System.Drawing.Size(295, 343);
             this.metroTabControl.TabIndex = 0;
             this.metroTabControl.UseSelectable = true;
@@ -293,7 +293,7 @@
             this.textHiber.CustomButton.Visible = false;
             this.textHiber.Enabled = false;
             this.textHiber.Lines = new string[0];
-            this.textHiber.Location = new System.Drawing.Point(226, 184);
+            this.textHiber.Location = new System.Drawing.Point(225, 184);
             this.textHiber.MaxLength = 32767;
             this.textHiber.Name = "textHiber";
             this.textHiber.PasswordChar = '\0';
