@@ -105,6 +105,9 @@ namespace CATSBot2
 
                 toogleState = CheckState.Unchecked;
                 toogleStartStop.Checked = false;
+                sw.Stop();
+                TimeSpan ts = sw.Elapsed;
+                SettingsManager.currentStatistics.working += ts.TotalHours;
             }
             catch (Exception e)
             {
