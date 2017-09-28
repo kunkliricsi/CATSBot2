@@ -51,7 +51,7 @@ namespace CATSBot2.Core
         public static void SaveLog()
         {
             string dateTimeString = DateTime.Now.ToString("yyyy_MM_dd", CultureInfo.InvariantCulture);
-            if (Directory.Exists("logs") && File.Exists(@"logs\CatsBot_" + dateTimeString + ".log"))
+            if (Directory.Exists("logs"))
                 File.AppendAllText(@"logs\CatsBot_" + dateTimeString + ".log", logText);
         }
     }

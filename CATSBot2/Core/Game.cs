@@ -109,17 +109,19 @@ namespace CATSBot2.Core
         {
             if (!RepeatFindButton(Resources.QuickFight, 4))
             {
-                if (ClickButtonWithFind(Resources.Choose))
+                if (FindButton(Resources.LabelRegular))
+                    BoxOpener.OpenBox(recount: true);
+                else if (ClickButtonWithFind(Resources.Choose))
                 {
-                    BoxOpener.OpenBox(false);
+                    BoxOpener.OpenBox(false, true);
                     SettingsManager.settings.champTime.AddHours(48);
                 }
                 else if (FindButton(Resources.LabelLegendary))
-                    BoxOpener.OpenBox(false);
+                    BoxOpener.OpenBox(false, true);
                 else if (FindButton(Resources.LabelSuper))
-                    BoxOpener.OpenBox(false);
+                    BoxOpener.OpenBox(false, true);
                 else if (FindButton(Resources.LabelGangbox))
-                    BoxOpener.OpenBox(false);
+                    BoxOpener.OpenBox(false, true);
                 else
                     RestartApp();
             }

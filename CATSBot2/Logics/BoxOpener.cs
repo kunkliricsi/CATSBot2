@@ -13,7 +13,7 @@ namespace CATSBot2.Logics
     static class BoxOpener
     {
         private static int arrows, boxes = 0;
-        private static bool sponsor, maxedCrowns = false;
+        private static bool maxedCrowns = false, notifyRecount = false;
 
         public static void SetBoxes()
         {
@@ -108,7 +108,7 @@ namespace CATSBot2.Logics
             return Messages.OK;
         }
 
-        public static Messages OpenBox(bool isSuperOrRegular = true)
+        public static Messages OpenBox(bool isSuperOrRegular = true, bool recount = false)
         {
             Logger.Log("Opening box...");
             SettingsManager.currentStatistics.boxes++;
@@ -125,11 +125,18 @@ namespace CATSBot2.Logics
 
             Game.ClickButtonWithFind(Resources.Collect);
 
+            maxedCrowns = false;
+
             if (isSuperOrRegular)
             {
                 SettingsManager.settings.boxTime = DateTime.MinValue;
-                if (--boxes <= 0)
-                    maxedCrowns = false;
+                boxes--;
+            }
+
+            if (recount)
+            {
+                maxedCrowns = false;
+                notifyRecount = true;
             }
 
             Game.RandomSleep(1000, 2500);
@@ -167,7 +174,7 @@ namespace CATSBot2.Logics
 
             #region Sponsor Box
             Logger.Log("Looking for Sponsor Box...");
-            sponsor = Game.FindButton(Resources.SponsorBox);
+            bool sponsor = Game.FindButton(Resources.SponsorBox);
 
             if (sponsor)
             {
@@ -182,9 +189,11 @@ namespace CATSBot2.Logics
             if (SettingsManager.settings.boxTime.CompareTo(DateTime.Now) > 0 && (!SettingsManager.settings.boxSkip || (SettingsManager.settings.quickFight && !QuickFight.reachedMax)) && !(SettingsManager.settings.crownMax && SettingsManager.settings.crownMaxEnabled))
                 return Messages.NotInFuncion;
 
-            if (boxes <= 0)
+            if (boxes <= 0 || notifyRecount)
             {
                 Logger.Log("Looking for available boxes");
+                maxedCrowns = false;
+                notifyRecount = false;
                 boxes = Game.FindAllButtons(Resources.RegularBox);
                 boxes += Game.FindAllButtons(Resources.SuperBox);
 
