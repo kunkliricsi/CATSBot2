@@ -23,7 +23,7 @@ An updated version of CATSBot.net's bot. This project was only made to improve m
 ## Introduction
 This project was originally started by the team of [catsbot.net](https://catsbot.net), by [@p410n3](https://github.com/p410n3) and [@1n9i9c7om](https://github.com/1n9i9c7om). Then by rewriting the program, multiple new features were added into spectrum. This guide's goal is to make you feel more familiar with the different options and settings the program offers, because some of them are not evident at first sight (I'm not a good namer). My english is not the best, so keep in mind that I may make mistakes throughout the guide, for which I would like to apologize.
 ## Settings
-Before starting the program you will face a lot of different options. I would advise you to set all the desired settings before starting the bot. I am not saying it will always cause problems, but it can.
+Before starting the program you will face a lot of different options. I would advise you to set all the desired settings before starting the bot. I am not saying it will cause any problems if you change the settings while its running, but it can.
 ### Quick fighting
 The bot will stop fighting if you reach stage max, unless other options let it fight.
 #### Quick Fight
