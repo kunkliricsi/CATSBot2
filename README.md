@@ -29,7 +29,7 @@ The bot will stop fighting if you reach stage max, unless other options let it f
 #### Quick Fight
 If checked, the bot will do quick fights, just as it did in the original bot.
 #### Skip above health
-Checking this option will add another step to the process. It will check the enemy's health, if its less or higher then the set amount, and then skips or attacks accordingly.
+Checking this option will add another step to the process. It will check the enemy's health, if its higher or less then the set amount, and then skips or attacks accordingly.
 #### Stop at coins
 The bot will check how many coins you have, and if its less than the set amount it will stop skipping opponents, and will work again just as it did in the original bot, however if you go back above the coin level (by opening boxes or defending your league position), it will start skipping again.
 ### Fight Championship
@@ -59,5 +59,5 @@ Stopping the bot, you first press the big toogle button which sets it into an in
 - Let the bot unlock a box when you start it.
 - For quickfighting take a wooden bodypart, and attach a weapon with one-shot capable damage, the best one is the minigun.
 - From my personal experience it is best to set the bot to crown maxing. You will get the money back you lost from skipping by opening boxes, and your rating will still go up.
-- Just a taste of what its capable of: from ~5000 attacks I've won ~4520, with a winrate of 90.3%. The avarage skips it does per attack is 1.21. Since implementing the box opening option (approx. 2days ago), it opened me ~100 boxes.
+- Just a taste of what its capable of: from ~5540 attacks I've won ~5010, with a winrate of 90.4%. The avarage skips it does per attack is 1.18. Since implementing the box opening option (approx. 3days ago), it opened me ~150 boxes and watched ~650 videos.
 - __Use the bot with full responsibility. From the moment you start your bot you are considered a cheater. Be prepared to get banned, because it is more than possible that the bot gets detected, although I've made everything that I could to evade just that.__
