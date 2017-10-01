@@ -77,7 +77,7 @@ namespace CATSBot2.Logics
 
                 if (!running)
                 {
-                    Game.RandomSleep(38000, 42000);
+                    Game.RandomSleep(65000, 71000);
                     Game.ClickBack();
                     Game.RandomSleep(2400, 3000);
                     Game.ClickBack();
@@ -86,7 +86,7 @@ namespace CATSBot2.Logics
                 }
                 else
                 {
-                    Game.RandomSleep(38000, 42000);
+                    Game.RandomSleep(65000, 71000);
                     int tries = 0;
                     do
                     {
@@ -145,7 +145,7 @@ namespace CATSBot2.Logics
             {
                 Logger.Log("Opening Uncle Tony's present...");
                 SettingsManager.currentStatistics.watchedVideos += 0.50;
-                Game.RandomSleep(38000, 42000);
+                Game.RandomSleep(65000, 71000);
                 bool collect;
                 tries = 0;
                 do

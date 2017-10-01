@@ -162,7 +162,7 @@
             "8",
             "9",
             "10"});
-            this.comboLatency.Location = new System.Drawing.Point(229, 266);
+            this.comboLatency.Location = new System.Drawing.Point(201, 266);
             this.comboLatency.Name = "comboLatency";
             this.comboLatency.Size = new System.Drawing.Size(44, 29);
             this.comboLatency.TabIndex = 21;
@@ -176,7 +176,7 @@
             this.labelLatency.Name = "labelLatency";
             this.labelLatency.Size = new System.Drawing.Size(234, 23);
             this.labelLatency.TabIndex = 20;
-            this.labelLatency.Text = "Increase value for slower computers";
+            this.labelLatency.Text = "Increase value if bot gets stuck";
             // 
             // checkQuickFight
             // 
