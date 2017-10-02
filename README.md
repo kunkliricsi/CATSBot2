@@ -1,5 +1,5 @@
 # CATSBot2
-An updated version of CATSBot.net's bot. This project was only made to improve my programming skills. I do not support any illegal activity by using this program.
+An updated version of CATSBot.net's bot. This project was only made to improve my programming skills. I do not support any illegal activity by using this program. The bot uses [Tesseract](https://github.com/tesseract-ocr/tesseract) for the OCR technology.
 
 ## Table of contents
 1. [Introduction](#introduction)
