@@ -293,7 +293,7 @@
             this.textHiber.CustomButton.Visible = false;
             this.textHiber.Enabled = false;
             this.textHiber.Lines = new string[0];
-            this.textHiber.Location = new System.Drawing.Point(225, 184);
+            this.textHiber.Location = new System.Drawing.Point(224, 184);
             this.textHiber.MaxLength = 32767;
             this.textHiber.Name = "textHiber";
             this.textHiber.PasswordChar = '\0';
@@ -344,9 +344,9 @@
             this.checkChamp.ForeColor = System.Drawing.SystemColors.ControlText;
             this.checkChamp.Location = new System.Drawing.Point(3, 130);
             this.checkChamp.Name = "checkChamp";
-            this.checkChamp.Size = new System.Drawing.Size(153, 19);
+            this.checkChamp.Size = new System.Drawing.Size(148, 19);
             this.checkChamp.TabIndex = 7;
-            this.checkChamp.Text = "Fight Champtionship";
+            this.checkChamp.Text = "Fight Championship";
             this.checkChamp.UseSelectable = true;
             this.checkChamp.CheckedChanged += new System.EventHandler(this.metroCheckBox2_CheckedChanged);
             // 
@@ -558,9 +558,9 @@
             this.labelAboutDate.FontSize = MetroFramework.MetroLabelSize.Small;
             this.labelAboutDate.Location = new System.Drawing.Point(3, 280);
             this.labelAboutDate.Name = "labelAboutDate";
-            this.labelAboutDate.Size = new System.Drawing.Size(114, 15);
+            this.labelAboutDate.Size = new System.Drawing.Size(110, 15);
             this.labelAboutDate.TabIndex = 15;
-            this.labelAboutDate.Text = "version1.0 2017-09-23";
+            this.labelAboutDate.Text = "version1.1 2017-10-02";
             this.labelAboutDate.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // linkAbout4

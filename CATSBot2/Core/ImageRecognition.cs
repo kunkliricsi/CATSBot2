@@ -90,7 +90,7 @@ namespace CATSBot2.Core
             {
                 Tesseract ocr = new Tesseract();
                 ocr.SetVariable("tessedit_char_whitelist", "0123456789");
-                ocr.Init(@"E:\Kunkli Richárd\Documents\GitHub\CATSBot2\CATSBot2\CATSBot2\english_tessdata\", "eng", false);
+                ocr.Init(@"english_tessdata\", "eng", false);
 
                 List<Word> results = ocr.DoOCR(screen, Rectangle.Empty);
                 if (results != null && results.Count != 0)
