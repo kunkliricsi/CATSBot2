@@ -141,6 +141,30 @@
     <Compile Include="Ocr.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="english_tessdata\eng.DangAmbigs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="english_tessdata\eng.freq-dawg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="english_tessdata\eng.inttemp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="english_tessdata\eng.normproto">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="english_tessdata\eng.pffmtable">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="english_tessdata\eng.unicharset">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="english_tessdata\eng.user-words">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="english_tessdata\eng.word-dawg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\label_gangbox_720.png" />
     <None Include="Resources\label_super_720.png" />
     <None Include="Resources\label_regular_720.png" />
@@ -163,14 +187,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="cats.ico" />
-    <Content Include="Content\tessdata\eng.DangAmbigs" />
-    <Content Include="Content\tessdata\eng.freq-dawg" />
-    <Content Include="Content\tessdata\eng.inttemp" />
-    <Content Include="Content\tessdata\eng.normproto" />
-    <Content Include="Content\tessdata\eng.pffmtable" />
-    <Content Include="Content\tessdata\eng.unicharset" />
-    <Content Include="Content\tessdata\eng.user-words" />
-    <Content Include="Content\tessdata\eng.word-dawg" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -208,9 +224,7 @@
     <None Include="Resources\unlock_720.png" />
     <None Include="bin\x64\Release\cats.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="english_tessdata\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MSBuild.NugetContentRestore.0.1.6\build\net40\MSBuild.NugetContentRestore.targets" Condition="Exists('..\packages\MSBuild.NugetContentRestore.0.1.6\build\net40\MSBuild.NugetContentRestore.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
