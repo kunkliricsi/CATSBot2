@@ -20,7 +20,7 @@ namespace CATSBot2.Logics
             if (!SettingsManager.settings.stageMax)
                 return Messages.NotInFuncion;
 
-            if (QuickFight.reachedMax && (!SettingsManager.settings.crownMax || !SettingsManager.settings.crownMaxEnabled))
+            if (QuickFight.reachedMax)
             {
                 ADB.ExitMemu();
                 if (SettingsManager.settings.hiber)
