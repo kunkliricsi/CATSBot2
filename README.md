@@ -45,7 +45,7 @@ This setting will make the bot only fight quick fights until all the boxes get m
 ### Hibernation
 Before every hibernation, the bot will compete in the [championship](#fight-championship), if the Fight Championship option is checked.
 #### Exit at Stage Max
-If checked the bot will stop everything and close the emulator after you reach stage max, unless the crown maxing option is set.
+If checked the bot will stop everything and close the emulator after you reach stage max.
 #### Hibernate in
 This setting means that no matter what happens, the bot will stop everything, close the emulator and hibernate the computer after it reaches the set time. If no time is set, or the time is less than 0.5. The bot will hibernate the computer when you reach stage max.
 ### Latency settings
@@ -59,6 +59,6 @@ Stopping the bot, you first press the big toogle button which sets it into an in
 - Let the bot unlock a box when you start it.
 - For quickfighting take a wooden bodypart, and attach a weapon with one-shot capable damage, the best one is the minigun.
 - From my personal experience it is best to set the bot to crown maxing. You will get the money back you lost from skipping by opening boxes, and your rating will still go up.
-- If you run out of videos to watch, you can get new videos by changing the emulated device (device, location, phone number and IMEI number). One devices is good for around 500-600 videos, then it only gives you like 10 to 50 daily.
+- If you run out of videos to watch, you can get new videos by changing the emulated device (device, location, phone number and IMEI number). The given number of videos may differ but its around 20 to 50.
 - Just a taste of what its capable of: from ~5540 attacks I've won ~5010, with a winrate of 90.4%. The avarage skips it does per attack is 1.18. Since implementing the box opening option (approx. 3days ago), it opened me ~150 boxes and watched ~650 videos.
 - __Use the bot with full responsibility. From the moment you start your bot you are considered a cheater. Be prepared to get banned, because it is more than possible that the bot gets detected, although I've made everything that I could to evade just that.__
