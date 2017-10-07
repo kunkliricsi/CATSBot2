@@ -177,6 +177,7 @@ namespace CATSBot2
             checkBoxSkip.Checked = SettingsManager.settings.boxSkip;
             checkBox.Checked = SettingsManager.settings.box;
             checkCrownMax.Checked = SettingsManager.settings.crownMax;
+            checkCrownMax.Enabled = SettingsManager.settings.crownMaxEnabled;
             checkStageMax.Checked = SettingsManager.settings.stageMax;
             checkHiber.Checked = SettingsManager.settings.hiber;
             checkChamp.Checked = SettingsManager.settings.champ;
@@ -283,7 +284,7 @@ namespace CATSBot2
         private void checkBoxSkip_CheckedChanged(object sender, EventArgs e)
         {
             SettingsManager.settings.boxSkip = checkBoxSkip.Checked;
-            if (checkBoxSkip.Checked && checkSkip.Enabled && checkSkip.Checked && checkCoinStop.Checked)
+            if (checkBoxSkip.Enabled && checkBoxSkip.Checked && checkSkip.Enabled && checkSkip.Checked && checkCoinStop.Checked)
                 checkCrownMax.Enabled = true;
             else
                 checkCrownMax.Enabled = false;
@@ -484,7 +485,7 @@ namespace CATSBot2
         {
             if (!checkBoxSkip.Enabled)
                 checkCrownMax.Enabled = false;
-            else if (checkBoxSkip.Checked)
+            else if (checkBoxSkip.Checked && checkSkip.Enabled && checkSkip.Checked && checkCoinStop.Checked)
                 checkCrownMax.Enabled = true;
         }
 
