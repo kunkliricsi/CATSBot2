@@ -73,7 +73,7 @@ namespace CATSBot2.Logics
                     running = false;
 
                 Game.ClickButton(Resources.Watch, 1);
-                SettingsManager.currentStatistics.watchedVideos += 0.50;
+                SettingsManager.currentStatistics.watchedVideos += 1.00;
 
                 if (!running)
                 {
@@ -144,7 +144,7 @@ namespace CATSBot2.Logics
             if (Game.ClickButtonWithFind(Resources.UncleTony, 2, 0.8))
             {
                 Logger.Log("Opening Uncle Tony's present...");
-                SettingsManager.currentStatistics.watchedVideos += 0.50;
+                SettingsManager.currentStatistics.watchedVideos += 1.00;
                 Game.RandomSleep(65000, 71000);
                 bool collect;
                 tries = 0;
