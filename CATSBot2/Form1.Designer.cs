@@ -558,9 +558,9 @@
             this.labelAboutDate.FontSize = MetroFramework.MetroLabelSize.Small;
             this.labelAboutDate.Location = new System.Drawing.Point(3, 280);
             this.labelAboutDate.Name = "labelAboutDate";
-            this.labelAboutDate.Size = new System.Drawing.Size(110, 15);
+            this.labelAboutDate.Size = new System.Drawing.Size(121, 15);
             this.labelAboutDate.TabIndex = 15;
-            this.labelAboutDate.Text = "version1.1 2017-10-02";
+            this.labelAboutDate.Text = "version1.2.2 2017-10-07";
             this.labelAboutDate.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // linkAbout4
